@@ -5,6 +5,14 @@ score = 0
 
 # Functions prototype
 def check_answer(entered_answer, correct_answer):
+    """Checks if user answers are correct or not and updates the score.
+    Args:
+        entered_answer (int): The user's answer.
+        correct_answer (int): the correct answer.
+        
+    Returns:
+        str: 'correct' if the answer is correct, otherwise 'wrong
+    """ 
     global score
 
     if int(entered_answer) == correct_answer:        
@@ -16,6 +24,12 @@ def check_answer(entered_answer, correct_answer):
    
  
 def get_valid_choice():
+    
+    """Ask user to enter a valid choice between 1 and 4
+    
+    Returns:
+        int: The valid choice entered by the user.   
+    """
     while True:
         try:
             user_answer = int(input("Please, Enter the correct choice (1, 2, 3, 4): "))
@@ -28,6 +42,10 @@ def get_valid_choice():
            
                
 def main():  
+    """Main function to run the simple quiz program.
+       Reads questions from JSON file, presents them to user, checks answers,
+       and updates score. Prints final score at the end.
+    """
     global score  
     # Reading file  
     with open('data.json', 'r') as file:
