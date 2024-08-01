@@ -6,6 +6,7 @@ score = 0
 # Functions prototype
 def check_answer(entered_answer, correct_answer):
     global score
+
     if int(entered_answer) == correct_answer:        
         score += 1  # Increase score for a correct answer
         return "correct"
@@ -35,9 +36,9 @@ def main():
     num_of_options=1
     questions_count = 0
    
-    for question_type in ['sport', 'maths']:
+    for question_type in data['quiz'].keys():
         print(f"{question_type.capitalize()} Questions:")
-        for q_key, q_value in data['quiz'][question_type].items():
+        for q_value in data['quiz'][question_type].values():
             print(f"Question: {q_value['question']}\n")
             
             print("Options:")
@@ -47,7 +48,13 @@ def main():
             num_of_options=1
             print()  # Adds a newline for separation
             
-            choice = get_valid_choice()      
+            choice = get_valid_choice()
+            
+                
+            for i in q_value['options']:
+                if q_value['answer'] == i:
+                    print((q_value['options'].index(q_value['answer']))+1)
+                        
             result = check_answer(choice, (q_value['options'].index(q_value['answer']))+1)
             print(f"Your answer is {result}\n")
             print()  # Adds an extra newline for separation
@@ -58,6 +65,4 @@ def main():
  
 if __name__ == "__main__":
     main()
-    
-    
     
